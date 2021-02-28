@@ -1,0 +1,76 @@
+@import '~bootstrap/scss/bootstrap';
+
+body {
+  @extend .mx-auto;
+  width: 768px;
+  min-width: 768px;
+}
+
+button {
+  @extend .m-1;
+  @extend .btn;
+  @extend .btn-success;
+}
+
+app-root > div {
+  @extend .p-1;
+}
+
+// formatting router-outlet
+app-tree-list > div,
+app-flower-list > div {
+  @extend .m-0;
+  @extend .p-3;
+  // @extend .jumbotron;
+  // old way to jumbotron
+  @extend .rounded;
+  @extend .container;
+  min-width: 768px;
+  background-color: lightgreen;
+
+  & > div {
+    @extend .m-0;
+    @extend .mb-3;
+    @extend .p-0;
+
+    & > table {
+      @extend .m-1;
+      @extend .table;
+      @extend .table-striped;
+
+      th,
+      td {
+        @extend .p-1;
+        border: 0;
+      }
+    }
+
+    & > label {
+      @extend .m-0;
+    }
+
+    input {
+      @extend .m-1;
+      @extend .rounded;
+      border: 0;
+    }
+  }
+}
+
+// tree-list-component
+// app-tree-list > div {
+//   & > div:first-child {
+//     @extend .m-0;
+//     @extend .mb-3;
+//     @extend .p-0;
+//     @extend .row;
+
+//     & > input {
+//       @extend .col-6;
+//     }
+
+//     & > button {
+//       @extend .col-3;
+//     }
+//   }
+// }

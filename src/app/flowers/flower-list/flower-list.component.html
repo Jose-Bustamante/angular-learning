@@ -1,0 +1,22 @@
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>Flower</th>
+      </tr>
+      <tr *ngFor="let flower of flowers">
+        <td>
+          {{ flower.name | uppercase }}
+        </td>
+        <td *ngIf="flower.color != 'Yellow', else ifbold ">
+          {{ flower.color | uppercase }}
+        </td>
+        <ng-template #ifbold>
+          <td>
+            <b>{{ flower.color | uppercase }}</b>
+          </td>
+        </ng-template>
+      </tr>
+    </table>
+  </div>
+</div>
