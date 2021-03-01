@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { Flower } from 'src/app/model/flower';
 import * as FlowerActions from 'src/app/store/flower/flower.actions';
-import { getGeneralFlowerState } from 'src/app/store/flower/flower.selectors';
+import { Observable } from "rxjs";
+import { getFlowers } from 'src/app/store/flower/flower.selectors';
 
 @Component({
   selector: 'app-flower-list',
@@ -10,16 +11,21 @@ import { getGeneralFlowerState } from 'src/app/store/flower/flower.selectors';
   styleUrls: ['./flower-list.component.scss']
 })
 export class FlowerListComponent implements OnInit {
-  // flowerString: string[] = ['Rosa','Margarita', 'Tulipan'];
   flowers: Flower[] = [];
+  flowers$!: Observable<Flower[]>;
+  @ViewChild('flowerName') flowerName!: ElementRef;
+  @ViewChild('flowerColor') flowerColor!: ElementRef;
+
   constructor(private store: Store<{}>) { }
 
   addFlower(name:string, color:string) {
     this.store.dispatch(new FlowerActions.AddFlower({name, color}));
+    this.flowerColor.nativeElement.value = '';
+    this.flowerName.nativeElement.value = '';
   }
 
-  removeFlower(index:number) {
-    this.store.dispatch(new FlowerActions.RemoveFlower(index));
+  removeFlower(name:string, color:string) {
+    this.store.dispatch(new FlowerActions.RemoveFlower({name, color}));
   }
 
   removeFlowers() {
@@ -28,7 +34,8 @@ export class FlowerListComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new FlowerActions.LoadFlower());
-    this.store.select(getGeneralFlowerState).subscribe(state => this.flowers = state);
+    // this.store.select(getFlowers).subscribe(state => this.flowers = state);
+    this.flowers$ = this.store.pipe(select(getFlowers))
   }
 
 }

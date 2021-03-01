@@ -1,20 +1,36 @@
 import { Flower } from '../../model/flower';
 import { Action } from '@ngrx/store';
+import { createEntityAdapter, EntityState } from '@ngrx/entity';
+
 
 import * as FlowerActions from './flower.actions';
 
 
-export declare type FlowerState = Flower[];
+export const flowersAdapter = createEntityAdapter<Flower>({
+  selectId: flowers => flowers.name
+});
 
-const initialState: FlowerState = [
-  {
-    name: 'Margarita',
-    color: 'white',
-  }
-];
+export interface FlowersState extends EntityState<Flower> {
+  loading: boolean;
+  error: undefined;
+}
+export const initialState: FlowersState = flowersAdapter.getInitialState({
+  loading: false,
+  error: undefined
+});
+
+
+// export declare type FlowerState = Flower[];
+
+// const initialState: FlowerState = [
+//   {
+//     name: 'Margarita',
+//     color: 'white',
+//   }
+// ];
 
 export function flowerReducer(
-  state: Flower[] = initialState,
+  state= initialState,
   action: Action
 ) {
   const specificAction = action as FlowerActions.FlowerActions;
@@ -22,13 +38,20 @@ export function flowerReducer(
   switch (specificAction.type) {
     case FlowerActions.LOAD_FLOWER:
       return state;
-    case FlowerActions.ADD_FLOWER:
-      return [...state, specificAction.payload];
-    case FlowerActions.REMOVE_FLOWER:
-      let arr:Flower[] = state.filter((_, index) => index !== specificAction.payload)
-      return arr;
+
+    case FlowerActions.ADD_FLOWER: {
+      const payload = specificAction.payload;
+      return { ...flowersAdapter.addOne(payload, state) };
+    }
+
+    case FlowerActions.REMOVE_FLOWER: {
+      const payload = specificAction.payload;
+      return { ...flowersAdapter.removeOne(payload.name, state) };
+    }
+
     case FlowerActions.REMOVE_FLOWERS:
-      return [];
+      return { ...flowersAdapter.removeAll(state)};
+
     default:
       return state;
   }

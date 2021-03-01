@@ -9,6 +9,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { flowerReducer } from './store/flower/flower.reducer';
+import { PlantsStoreModule } from './store/plants-store.module';
+import {metaReducers, reducers} from './reducers';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { flowerReducer } from './store/flower/flower.reducer';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({flower: flowerReducer}, {}),
+    PlantsStoreModule,
+    StoreModule.forRoot(reducers, {metaReducers}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([])
   ],

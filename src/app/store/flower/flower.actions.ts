@@ -15,7 +15,7 @@ export class AddFlower implements Action {
 }
 export class RemoveFlower implements Action {
   readonly type = REMOVE_FLOWER;
-  constructor(public payload:number) {}
+  constructor(public payload:Flower) {}
 }
 export class RemoveFlowers implements Action {
   readonly type = REMOVE_FLOWERS;
