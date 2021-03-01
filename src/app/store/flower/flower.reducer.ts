@@ -8,26 +8,27 @@ export declare type FlowerState = Flower[];
 
 const initialState: FlowerState = [
   {
-    name: 'Initial Flower',
-    color: 'Blue'
+    name: 'Margarita',
+    color: 'white',
   }
 ];
 
 export function flowerReducer(
   state: Flower[] = initialState,
-  action: FlowerActions.FlowerActions
+  action: Action
 ) {
-  switch (action.type) {
+  const specificAction = action as FlowerActions.FlowerActions;
+
+  switch (specificAction.type) {
     case FlowerActions.LOAD_FLOWER:
       return state;
     case FlowerActions.ADD_FLOWER:
-      return [...state, action.payload];
+      return [...state, specificAction.payload];
     case FlowerActions.REMOVE_FLOWER:
-      state.splice(action.payload, 1);
-      return state;
+      let arr:Flower[] = state.filter((_, index) => index !== specificAction.payload)
+      return arr;
     case FlowerActions.REMOVE_FLOWERS:
-      state.splice(0, state.length);
-      return state;
+      return [];
     default:
       return state;
   }

@@ -18,7 +18,7 @@ import { flowerReducer } from './store/flower/flower.reducer';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({ flower: flowerReducer }, {}),
+    StoreModule.forRoot({flower: flowerReducer}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([])
   ],

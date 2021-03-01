@@ -1,10 +1,19 @@
 <div>
+  <div class="row">
+    <input class="col" type="text" placeholder="name" #flowerName />
+    <input class="col" type="text" placeholder="color" #flowerColor />
+    <button class="col" (click)="addFlower(flowerName.value, flowerColor.value)">
+      Add Flower
+    </button>
+  </div>
   <div>
     <table>
       <tr>
         <th>Flower</th>
+        <th>Color</th>
+        <th><button (click)="removeFlowers()">Remove All</button></th>
       </tr>
-      <tr *ngFor="let flower of flowers">
+      <tr *ngFor="let flower of flowers; let i = index">
         <td>
           {{ flower.name | uppercase }}
         </td>
@@ -16,6 +25,9 @@
             <b>{{ flower.color | uppercase }}</b>
           </td>
         </ng-template>
+        <td>
+          <button (click)="removeFlower(i)">Delete flower</button>
+        </td>
       </tr>
     </table>
   </div>
