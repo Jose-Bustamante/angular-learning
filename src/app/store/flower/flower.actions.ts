@@ -11,18 +11,20 @@ export class LoadFlower implements Action {
 }
 export class AddFlower implements Action {
   readonly type = ADD_FLOWER;
-  constructor(public payload: Flower) {}
+  constructor(public payload:Flower) {}
 }
 export class RemoveFlower implements Action {
   readonly type = REMOVE_FLOWER;
-  constructor(public payload?: number) {}
+  constructor(public payload:number) {}
 }
 export class RemoveFlowers implements Action {
   readonly type = REMOVE_FLOWERS;
 }
 
 export type FlowerActions =
-  | LoadFlower
+  LoadFlower
   | AddFlower
   | RemoveFlower
+  | RemoveFlowers;
+
 

@@ -1,4 +1,5 @@
 import { Flower } from '../../model/flower';
+import { Action } from '@ngrx/store';
 
 import * as FlowerActions from './flower.actions';
 
@@ -22,10 +23,11 @@ export function flowerReducer(
     case FlowerActions.ADD_FLOWER:
       return [...state, action.payload];
     case FlowerActions.REMOVE_FLOWER:
+      state.splice(action.payload, 1);
       return state;
-      // return state.splice(action.payload, 1);
-    // case FlowerActions.REMOVE_FLOWERS:
-    //   return state.splice(0, state.length);
+    case FlowerActions.REMOVE_FLOWERS:
+      state.splice(0, state.length);
+      return state;
     default:
       return state;
   }
