@@ -3,7 +3,7 @@ import { Action } from '@ngrx/store';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 
 
-import * as FlowerActions from './flower.actions';
+import {FlowerActions, FlowerActionTypes} from './flower.actions';
 
 
 export const flowersAdapter = createEntityAdapter<Flower>({
@@ -25,23 +25,31 @@ export function flowerReducer(
   state= initialState,
   action: Action
 ) {
-  const specificAction = action as FlowerActions.FlowerActions;
+  const specificAction = action as FlowerActions;
 
   switch (specificAction.type) {
-    case FlowerActions.LOAD_FLOWER:
+    case FlowerActionTypes.LoadFlower:
       return state;
 
-    case FlowerActions.ADD_FLOWER: {
+    case FlowerActionTypes.LoadFlowers:
+      return state;
+
+    case FlowerActionTypes.AddFlower: {
       const payload = specificAction.payload;
       return { ...flowersAdapter.addOne(payload, state) };
     }
 
-    case FlowerActions.REMOVE_FLOWER: {
+    case FlowerActionTypes.AddFlowerSuccess: {
+      const payload = specificAction.payload;
+      return { ...flowersAdapter.addMany(payload.flowers, state) };
+    }
+
+    case FlowerActionTypes.RemoveFlower: {
       const payload = specificAction.payload;
       return { ...flowersAdapter.removeOne(payload.name, state) };
     }
 
-    case FlowerActions.REMOVE_FLOWERS:
+    case FlowerActionTypes.RemoveFlowers:
       return { ...flowersAdapter.removeAll(state)};
 
     default:

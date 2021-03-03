@@ -38,4 +38,8 @@ export class FlowerListComponent implements OnInit {
     this.flowers$ = this.store.pipe(select(getFlowers))
   }
 
+  flowerServiceToState() {
+    this.store.dispatch(new FlowerActions.LoadFlowers());
+  }
+
 }

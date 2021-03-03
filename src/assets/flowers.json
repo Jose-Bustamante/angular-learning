@@ -1,0 +1,28 @@
+{
+  "flowers": [
+    {
+      "name": "Flower 1",
+      "color": "Red"
+    },
+    {
+      "name": "Flower 2",
+      "color": "Red"
+    },
+    {
+      "name": "Flower 3",
+      "color": "Red"
+    },
+    {
+      "name": "Flower 4",
+      "color": "Red"
+    },
+    {
+      "name": "Flower 5",
+      "color": "Red"
+    },
+    {
+      "name": "Flower 6",
+      "color": "Red"
+    }
+  ]
+}
