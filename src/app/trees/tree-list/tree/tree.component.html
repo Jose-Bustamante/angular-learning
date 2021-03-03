@@ -1,0 +1,18 @@
+<div>
+  <div *ngIf="flowers">
+    <table>
+      <tr>
+        <th>Flower</th>
+        <th>Color</th>
+      </tr>
+      <tr *ngFor="let flower of flowers">
+        <td>{{ flower.name }}</td>
+        <td>{{ flower.color }}</td>
+      </tr>
+    </table>
+
+    <div *ngIf="flowersAmount">
+      The total of Flowers is: {{flowersAmount}}
+    </div>
+  </div>
+</div>

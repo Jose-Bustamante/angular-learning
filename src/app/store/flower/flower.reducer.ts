@@ -14,20 +14,12 @@ export interface FlowersState extends EntityState<Flower> {
   loading: boolean;
   error: undefined;
 }
+
 export const initialState: FlowersState = flowersAdapter.getInitialState({
   loading: false,
   error: undefined
 });
 
-
-// export declare type FlowerState = Flower[];
-
-// const initialState: FlowerState = [
-//   {
-//     name: 'Margarita',
-//     color: 'white',
-//   }
-// ];
 
 export function flowerReducer(
   state= initialState,

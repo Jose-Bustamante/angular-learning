@@ -1,5 +1,12 @@
 <div>
   <div>
+    <div>
+      <button (click)="myFlowerHandler()">Get Flowers</button>
+      <app-tree
+      [flowers]="flowers$ | async"
+      [flowersAmount]="flowersTotal$ | async"
+      ></app-tree>
+    </div>
     <button (click)="clickHandler()">Click me!</button>
     <input (keyup)="keyHandler($event)" type="text" #eventInput [value]="fieldValue"/>
     <p>{{ eventInput.value }}</p>

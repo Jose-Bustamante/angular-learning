@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { TreesRoutingModule } from './trees-routing.module';
 import { TreeListComponent } from './tree-list/tree-list.component';
+import { TreeComponent } from './tree-list/tree/tree.component';
 
 
 @NgModule({
-  declarations: [TreeListComponent],
+  declarations: [TreeListComponent, TreeComponent],
   imports: [
     CommonModule,
     TreesRoutingModule

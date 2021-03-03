@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Flower } from 'src/app/model/flower';
 import { ChuckService } from 'src/app/service/chuck.service';
+import { getFlowers, getNumberOfFlowers } from 'src/app/store/flower/flower.selectors';
 
 @Component({
   selector: 'app-tree-list',
@@ -10,8 +14,10 @@ export class TreeListComponent implements OnInit {
 
   fieldValue: string = 'This is a test';
   public data:any;
+  flowers$!: Observable<Flower[]>;
+  flowersTotal$!: Observable<number>;
 
-  constructor(private chuckService: ChuckService) {
+  constructor(private chuckService: ChuckService, private store:Store<{}>) {
 
   }
 
@@ -25,6 +31,7 @@ export class TreeListComponent implements OnInit {
       err => console.log('API Error ==> ', err),
       () => console.log('API Load done!')
     )
+    this.flowersTotal$ = this.store.pipe(select(getNumberOfFlowers));
   }
 
   clickHandler() {
@@ -36,4 +43,7 @@ export class TreeListComponent implements OnInit {
     console.log('Input value!', event.key)
   }
 
+  myFlowerHandler() {
+    this.flowers$ = this.store.pipe(select(getFlowers))
+  }
 }
