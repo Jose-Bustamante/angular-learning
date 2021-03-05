@@ -32,7 +32,7 @@ export function flowerReducer(
       return state;
 
     case FlowerActionTypes.LoadFlowers:
-      return state;
+      return { ...state, loading: true};
 
     case FlowerActionTypes.AddFlower: {
       const payload = specificAction.payload;
@@ -41,7 +41,7 @@ export function flowerReducer(
 
     case FlowerActionTypes.AddFlowerSuccess: {
       const payload = specificAction.payload;
-      return { ...flowersAdapter.addMany(payload.flowers, state) };
+      return { ...flowersAdapter.addMany(payload.flowers, state), loading:false };
     }
 
     case FlowerActionTypes.RemoveFlower: {
