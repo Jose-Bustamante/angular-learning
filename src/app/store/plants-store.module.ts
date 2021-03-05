@@ -13,7 +13,7 @@ export const plantsEffects = [FlowerEffects]
 @NgModule({
   imports: [
     EffectsModule.forFeature(plantsEffects),
-    StoreModule.forFeature('plants', plantsReducer)
+    StoreModule.forFeature('plants', plantsReducer),
   ]
 })
 export class PlantsStoreModule {}
