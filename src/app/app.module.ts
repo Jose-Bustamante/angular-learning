@@ -11,10 +11,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { flowerReducer } from './store/flower/flower.reducer';
 import { PlantsStoreModule } from './store/plants-store.module';
 import {metaReducers, reducers} from './reducers';
+import { ChampionListComponent } from './champions/champion-list/champion-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ChampionListComponent,
   ],
   imports: [
     BrowserModule,
